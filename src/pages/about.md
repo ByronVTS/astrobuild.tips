@@ -1,5 +1,6 @@
 ---
 title: "My first Page"
+layout: "../layouts/Base.astro"
 ---
 ## Hello world
 

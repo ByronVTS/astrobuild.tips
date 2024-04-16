@@ -1,0 +1,23 @@
+---
+export interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+// Estamos trayendo el nombre asignado que tenemos en ese comoponente para que en caso de cambiarlo solo se lo hago en un sitio unicamente
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-slate-900 text-slate-400">
+    <div class="flex-block max-w-xl p-4 md:pd-8 mx-auto mt-4">
+      <div class="bg-white shadow rounded-lg pd-4">
+        <slot />
+      </div>
+    </div>
+  </body>
+</html>l
