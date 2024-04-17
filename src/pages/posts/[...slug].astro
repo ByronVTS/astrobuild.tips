@@ -1,18 +1,30 @@
 ---
+// Importa la función getCollection del módulo "astro:content"
 import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
 
+// Define una función asincrónica llamada getStaticPaths que devuelve un array de rutas estáticas
 export async function getStaticPaths(){
+    // Obtiene la colección de publicaciones llamada "tips" utilizando la función getCollection
     const posts = await getCollection("tips")
+
+    // Mapea las publicaciones para generar un array de objetos de ruta estática
     return posts.map((post) => (
         {
+            // Cada objeto de ruta estática tiene un parámetro "slug" y props que contienen los datos de la publicación
             params:{slug:post.slug},
             props: post,
         }
     ))
 }
-
+// Define una variable llamada post que intenta acceder a las props de un componente Astro
 const post = Astro.props;
+
+// Renderiza el contenido de la publicación utilizando el componente Content proporcionado por Astro
 const { Content } = await post.render();
 ---
+<Base title="AstroBuild.tips">
+<!-- Renderiza el componente Content en JSX. Se espera que este componente muestre el contenido de la publicación. -->
+    <Content/>
+<Base/>
 
-<Content/>
