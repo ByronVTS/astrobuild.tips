@@ -1,0 +1,75 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/Card.astro";
+import Header from "../../components/Header.astro";
+import Hero from "../../components/Hero.astro";
+import { getCollection } from "astro:content";
+
+// const allPosts = await Astro.glob("../content/*.md");
+// tenemos un especie de busqueda de todos los arhivos de tipo .md dentro de la carpeta content
+
+//Vamos acceder al contenido que queremos en base al nombre del archivo 
+
+const posts = (await getCollection("tips")).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+//Se supone que estamos comparando las fechas de los publicaciones de los tips para que se ordenen de mayor a menor
+console.log(posts);
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+		<Header title="AtroBuild.tips" />
+		<Hero />
+		<ul role="list" class="link-card-grid">
+			{
+				posts.map((post) => (
+					<Card
+						title={post.data.title}
+						time={post.data.time}
+						tags={post.data.tags}
+                        slug={post.slug}
+					/>
+				))
+			}
+		</ul>
+	</main>
+</Layout>
+
+<style>
+	main {
+		margin: auto;
+		padding: 1rem;
+		width: 800px;
+		max-width: calc(100% - 2rem);
+		color: white;
+		font-size: 20px;
+		line-height: 1.6;
+	}
+	.astro-a {
+		position: absolute;
+		top: -32px;
+		left: 50%;
+		transform: translatex(-50%);
+		width: 220px;
+		height: auto;
+		z-index: -1;
+	}
+	.instructions code {
+		font-size: 0.8em;
+		font-weight: bold;
+		background: rgba(var(--accent-light), 12%);
+		color: rgb(var(--accent-light));
+		border-radius: 4px;
+		padding: 0.3em 0.4em;
+	}
+	.instructions strong {
+		color: rgb(var(--accent-light));
+	}
+	.link-card-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+		gap: 2rem;
+		padding: 0;
+	}
+</style>

@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
-import Header from "./Header.astro";
-import Hero from "./Hero.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
 
-const allPosts = await Astro.glob("../content/*.md");
+const allPosts = await Astro.glob("../content/tips/*.md");
 // tenemos un especie de busqueda de todos los arhivos de tipo .md dentro de la carpeta content
 ---
 

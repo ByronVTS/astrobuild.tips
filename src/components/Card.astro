@@ -3,9 +3,10 @@ interface Props {
 	title: string;
 	time: string;
 	tags: string;
+	slug: string
 }
 
-const { time, title, tags } = Astro.props;
+const { time, title, tags, slug } = Astro.props;
 ---
 
 <article
@@ -15,7 +16,7 @@ const { time, title, tags } = Astro.props;
 			{time}
 		</time>
 
-		<a href="#">
+		<a href={`/posts/${slug}`}>
 			<h3 class="mt-0.5 text-lg font-medium text-gray-900">
 				{title}
 			</h3>
