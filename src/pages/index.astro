@@ -1,14 +1,17 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
-import Header from './Header.astro';
-import Hero from './Hero.astro';
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Header from "./Header.astro";
+import Hero from "./Hero.astro";
+
+const allPosts = await Astro.glob("../content/*.md");
+// tenemos un especie de busqueda de todos los arhivos de tipo .md dentro de la carpeta content
 ---
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<Header title="AtroBuild.tips"/>
-		<Hero/>
+		<Header title="AtroBuild.tips" />
+		<Hero />
 		<!-- <svg
 			class="astro-a"
 			width="495"
@@ -39,11 +42,15 @@ import Hero from './Hero.astro';
 		</svg> -->
 		<!-- <h1>Welcome to <span class="text-gradient">Astro</span></h1> -->
 		<ul role="list" class="link-card-grid">
-			<Card
-				title='Hello Astro';
-				time="2024-5-07";
-				tags="JavaScript";
-			/>
+			{
+				allPosts.map((item) => (
+					<Card
+						title={item?.frontmatter.title}
+						time={item?.frontmatter?.pubDate}
+						tags={item?.frontmatter?.tags}
+					/>
+				))
+			}
 		</ul>
 	</main>
 </Layout>
