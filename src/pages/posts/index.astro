@@ -14,7 +14,7 @@ const posts = (await getCollection("tips")).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 //Se supone que estamos comparando las fechas de los publicaciones de los tips para que se ordenen de mayor a menor
-console.log(posts);
+// console.log(posts);
 ---
 
 <Layout title="Welcome to Astro.">

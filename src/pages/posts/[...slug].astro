@@ -1,7 +1,8 @@
 ---
 // Importa la función getCollection del módulo "astro:content"
 import { getCollection } from "astro:content";
-import Header from "../../components/Header";
+import HeaderTop from "../../components/HeaderTop"
+import Header from "../../components/Header"
 import Footer from "../../components/Footer.vue";
 import Base from "../../layouts/Base.astro";
 import Social from "../../components/social.svelte"
@@ -26,11 +27,12 @@ const post = Astro.props;
 // Renderiza el contenido de la publicación utilizando el componente Content proporcionado por Astro
 const { Content } = await post.render();
 ---
-<Base title="AstroBuild.tips">
+<Base title="AstroBuild.tips"/>
+    <HeaderTop client:load/>
     <Header title="AstroBuild.tips"/>
 <!-- Renderiza el componente Content en JSX. Se espera que este componente muestre el contenido de la publicación. -->
-        <Content/>
-        <Social/>
+    <Content/>
+    <Social/>
     <Footer/>
-<Base/>
+
 
