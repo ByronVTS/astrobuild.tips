@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer.vue";
 import Base from "../../layouts/Base.astro";
+import Social from "../../components/social.svelte"
 
 // Define una función asincrónica llamada getStaticPaths que devuelve un array de rutas estáticas
 export async function getStaticPaths(){
@@ -29,6 +30,7 @@ const { Content } = await post.render();
     <Header title="AstroBuild.tips"/>
 <!-- Renderiza el componente Content en JSX. Se espera que este componente muestre el contenido de la publicación. -->
         <Content/>
+        <Social/>
     <Footer/>
 <Base/>
 
